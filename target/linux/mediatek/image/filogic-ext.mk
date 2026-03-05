@@ -15,7 +15,6 @@ define Device/xiaomi_mi-router-ax3000t-mtkuboot
 endef
 TARGET_DEVICES += xiaomi_mi-router-ax3000t-mtkuboot
 
-
 define Device/netcore_n60-pro-mtkuboot
   DEVICE_VENDOR := Netcore
   DEVICE_MODEL := N60 Pro
@@ -40,3 +39,14 @@ define Device/netcore_n60-pro-mtkuboot
   ARTIFACT/bl31-uboot.fip := mt7986-bl31-uboot netcore_n60-pro
 endef
 TARGET_DEVICES += netcore_n60-pro-mtkuboot
+
+define Device/clx_s20p
+  DEVICE_VENDOR := CLX
+  DEVICE_MODEL := S20P
+  DEVICE_DTS := mt7986a-clx-s20p
+  DEVICE_DTS_DIR := ../dts-ext
+  DEVICE_PACKAGES := kmod-usb3 kmod-mmc kmod-fs-f2fs kmod-fs-ext4 kmod-fs-vfat kmod-nls-cp437 kmod-nls-iso8859-1 \
+  mkf2fs f2fsck e2fsprogs blkid blockdev losetup automount
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += clx_s20p
